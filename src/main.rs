@@ -7,7 +7,7 @@ use crate::parser::{cosine_similarity, read_file};
 mod parser;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let content = read_file("README.md");
+    let content = read_file("notes.md");
 
     let model = SentenceEmbeddingsBuilder::remote(SentenceEmbeddingsModelType::AllMiniLmL12V2)
         .create_model()?;
@@ -17,7 +17,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let output = model.encode(&sentences)?;
 
     // use consine similarity to output based on query
-    let query = "what are the features of this program?";
+    let query = "what is a convolution in image processing?";
 
     let query_embedding = model.encode(&[query])?;
 
